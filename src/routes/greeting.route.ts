@@ -27,3 +27,6 @@ export class GreetingRoute{
         });
     }
 }
+//controller
+//service
+//repo - mongo mysql postgres
