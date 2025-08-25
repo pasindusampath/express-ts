@@ -1,12 +1,13 @@
 import express, { Application } from "express";
 import { Routes } from "./routes/routes";
+import { APP_CONFIG } from "./config/app.config";
 
 const app:Application = express();
 
 app.use(express.json());
 app.use("/api" ,Routes.getInstance().router)
 
-const PORT = 3000;
+const PORT = APP_CONFIG.PORT;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
