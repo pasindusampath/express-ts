@@ -25,9 +25,9 @@ export class CustomerController{
                 phone:"1234567890",
                 address:"123 Main St, Anytown, USA",
             };
-            successResponse(HttpStatus.OK,res,customer);
+            return successResponse(HttpStatus.OK,res,customer);
         }catch (error){
-            errorResponse(HttpStatus.INTERNAL_SERVER_ERROR,res,ERRORS.BAD_REQUEST);
+            return errorResponse(HttpStatus.INTERNAL_SERVER_ERROR,res,ERRORS.BAD_REQUEST);
         }
     }
 

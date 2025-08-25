@@ -23,9 +23,9 @@ export class UserController{
         try{
             const user = req.body;
             const newUser = await this.userService.createUser(user);
-            successResponse(HttpStatus.CREATED,res,newUser);
+            return successResponse(HttpStatus.CREATED,res,newUser);
         }catch(error:any){
-            errorResponse(HttpStatus.INTERNAL_SERVER_ERROR,res,ERRORS.BAD_REQUEST);
+            return errorResponse(HttpStatus.INTERNAL_SERVER_ERROR,res,ERRORS.BAD_REQUEST);
         }
     }
 
@@ -33,13 +33,13 @@ export class UserController{
         try{
             const {email} = req.params;
             const user = await this.userService.getUserByEmail(email);
-            successResponse(HttpStatus.OK,res,user);
+            return successResponse(HttpStatus.OK,res,user);
         }catch(error:any){
             console.log(JSON.stringify(error));
             if(error.message === ERRORS.USER_NOT_FOUND.key){
-                errorResponse(HttpStatus.NOT_FOUND,res,ERRORS.USER_NOT_FOUND);
+                return errorResponse(HttpStatus.NOT_FOUND,res,ERRORS.USER_NOT_FOUND);
             }
-            errorResponse(HttpStatus.INTERNAL_SERVER_ERROR,res,ERRORS.BAD_REQUEST);
+            return errorResponse(HttpStatus.INTERNAL_SERVER_ERROR,res,ERRORS.BAD_REQUEST);
         }
     }
 
