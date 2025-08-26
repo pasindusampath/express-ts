@@ -1,5 +1,7 @@
 import { Router } from "express";
 import { UserController } from "../controller/user.controller";
+import { validateRequestBody } from "../middleware/validation.middleware";
+import { createUserDtoSchema } from "../dto/user/createUser.dto";
 
 export class UserRoute{
     private static instance:UserRoute;
@@ -21,7 +23,7 @@ export class UserRoute{
 
     private setupRoutes(){
 
-        this.router.post("/", this.userController.createUser);
+        this.router.post("/", validateRequestBody(createUserDtoSchema), this.userController.createUser);
         this.router.get("/:email", this.userController.getUserByEmail);
     }
 }

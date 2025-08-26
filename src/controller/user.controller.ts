@@ -3,6 +3,7 @@ import { UserService } from "../service/user.service";
 import { errorResponse, successResponse } from "../common/responseHandler";
 import { ERRORS } from "../common/constants/errors.constants";
 import { HttpStatus } from "../common/constants/httpStatus.enum";
+import { CreateUserDto } from "../dto/user/createUser.dto";
 
 export class UserController{
     private static instance:UserController;
@@ -21,7 +22,7 @@ export class UserController{
 
     createUser = async (req:Request , res:Response)=>{
         try{
-            const user = req.body;
+            const user = req.body as CreateUserDto;
             const newUser = await this.userService.createUser(user);
             return successResponse(HttpStatus.CREATED,res,newUser);
         }catch(error:any){
